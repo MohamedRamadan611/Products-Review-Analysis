@@ -1,0 +1,3814 @@
+{
+	"info": {
+		"_postman_id": "23d607fb-6329-4109-8b8e-50549ab9cf5d",
+		"name": "Product View Analysis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6740358"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create Admin",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var verify_token = pm.response.headers.get(\"token\");\r",
+									"pm.collectionVariables.set(\"verify_token\" , verify_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Mohamed\",\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\",\r\n    \"mobile\" : \"01149460094\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Mohamed\",\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\",\r\n    \"mobile\" : \"01149460094\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "token",
+									"value": "8fb8252d-4ffd-4d35-933d-b9924b725b48"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:08:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "http://localhost:8082/admin/verifyRegistration?token=8fb8252d-4ffd-4d35-933d-b9924b725b48"
+						},
+						{
+							"name": "Validation Of Name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"\",\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\",\r\n    \"mobile\" : \"01149460094\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:08:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"must not be blank\"\n}"
+						},
+						{
+							"name": "Validation Of Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Mohamed\",\r\n    \"email\" : \"Mohamed.Ramadan611\",\r\n    \"password\" : \"Ramadan\",\r\n    \"mobile\" : \"01149460094\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:08:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"email\": \"must be a well-formed email address\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Authenticate Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JWT_token = pm.response.headers.get(\"authorize_token\");\r",
+									"pm.collectionVariables.set(\"JWT_token\" , JWT_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Mohamed.ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"authenticate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Authenticate Token Admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Mohamed.ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/authenticate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"authenticate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "authorize_token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNb2hhbWVkLnJhbWFkYW42MTFAZ21haWwuY29tIiwiaWF0IjoxNjc1NTI2OTc4LCJleHAiOjE2NzU1Mjg3Nzh9.D9AAH3UN1x9scsY1dvFl0Jlro5xeCsppeNVMiipPF3Y"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:09:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your token is ready"
+						},
+						{
+							"name": "Authenticate Admin \"Wrong Password\"",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Mohamed.ramadan611@gmail.com\",\r\n    \"password\" : \"Ramada\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/authenticate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"authenticate"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:11:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Verify Admin Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/verifyRegistration?token={{verify_token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"verifyRegistration"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{verify_token}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify Admin Account",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/verifyRegistration?token={{verify_token}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"verifyRegistration"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{verify_token}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:12:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Account is Verified !"
+						}
+					]
+				},
+				{
+					"name": "Resend Verification Token for Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.headers.get(\"resend_verification\");\r",
+									"pm.collectionVariables.set(\"verify_token\" , token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/resendVerification?oldToken={{verify_token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"resendVerification"
+							],
+							"query": [
+								{
+									"key": "oldToken",
+									"value": "{{verify_token}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Account is already Verified",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/resendVerification?oldToken={{verify_token}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"resendVerification"
+									],
+									"query": [
+										{
+											"key": "oldToken",
+											"value": "{{verify_token}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:12:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Account is Already Verified"
+						}
+					]
+				},
+				{
+					"name": "Admin Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.headers.get(\"reset_password_token\");\r",
+									"pm.collectionVariables.set(\"reset_password_token\" , token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/resetPassword?email=Mohamed.Ramadan611@gmail.com",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"resetPassword"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "Mohamed.Ramadan611@gmail.com"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Reset Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/resetPassword?email=Mohamed.Ramadan611@gmail.com",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"resetPassword"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "Mohamed.Ramadan611@gmail.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "reset_password_token",
+									"value": "16ca5747-448e-43ea-a7c7-444d94b6333a"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:13:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Reset Password Link is Ready"
+						},
+						{
+							"name": "Email Not Found \"Wrong Email\"",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/resetPassword?email=Mohamed.Ramadan611@gmail.co",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"resetPassword"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "Mohamed.Ramadan611@gmail.co"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:12:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Admin Save Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\",\r\n    \"newPassword\" : \"Hussien\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/savePassword?token={{reset_password_token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"savePassword"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{reset_password_token}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Save New Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ramadan\",\r\n    \"newPassword\" : \"Hussien\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/savePassword?token={{reset_password_token}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"savePassword"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{reset_password_token}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:14:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Password is Changed !"
+						},
+						{
+							"name": "Old Password is Wronh",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ramad\",\r\n    \"newPassword\" : \"Hussien\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/savePassword?token={{reset_password_token}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"savePassword"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{reset_password_token}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:14:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Password Is Wrong ! "
+						}
+					]
+				},
+				{
+					"name": "Admin Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Hussien\",\r\n    \"newPassword\" : \"Mohsen\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/changePassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"changePassword"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "4bf83c24-e8be-4fbd-9e4f-74c8496f9471",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Change Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Hussien\",\r\n    \"newPassword\" : \"Mohsen\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/changePassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"changePassword"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "4bf83c24-e8be-4fbd-9e4f-74c8496f9471",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:15:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Password is Changed !"
+						},
+						{
+							"name": "Wrong Old Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\r\n    \"password\" : \"Hussi\",\r\n    \"newPassword\" : \"Mohsen\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/changePassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"changePassword"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "4bf83c24-e8be-4fbd-9e4f-74c8496f9471",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:15:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Password Is Wrong ! "
+						}
+					]
+				},
+				{
+					"name": "Admin Get All User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/allUsers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"allUsers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Get All User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/allUsers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"allUsers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:17:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"Ayman\",\n        \"email\": \"Ayman.Ramadan611@gmail.com\",\n        \"mobile\": \"01095940196\",\n        \"verified\": \"NOT_VERIFIED\",\n        \"role\": \"ROLE_USER\"\n    },\n    {\n        \"name\": \"Hussien\",\n        \"email\": \"Hussien.Ramadan611@gmail.com\",\n        \"mobile\": \"01095940196\",\n        \"verified\": \"NOT_VERIFIED\",\n        \"role\": \"ROLE_USER\"\n    }\n]"
+						},
+						{
+							"name": "Admin Get All User \"No User Created Yer\"",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/allUsers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"allUsers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:16:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var verify_token = pm.response.headers.get(\"token\");\r",
+									"pm.collectionVariables.set(\"user_verify_token\" , verify_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Ayman\",\r\n    \"email\" : \"Ayman.Ramadan611@gmail.com\",\r\n    \"password\" : \"AymanRamadan\",\r\n    \"mobile\" : \"01095940196\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Ayman\",\r\n    \"email\" : \"Ayman.Ramadan611@gmail.com\",\r\n    \"password\" : \"AymanRamadan\",\r\n    \"mobile\" : \"01095940196\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "token",
+									"value": "a649c560-573d-40ae-baa1-8d19da220b5f"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:16:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "http://localhost:8082/user/verifyRegistration?token=a649c560-573d-40ae-baa1-8d19da220b5f"
+						}
+					]
+				},
+				{
+					"name": "Authenticate user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JWT_token = pm.response.headers.get(\"authorize_token\");\r",
+									"pm.collectionVariables.set(\"JWT_user_token\" , JWT_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Ayman.Ramadan611@gmail.com\",\r\n    \"password\" : \"AymanRamadan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"authenticate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Authenticate user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"Ayman.Ramadan611@gmail.com\",\r\n    \"password\" : \"AymanRamadan\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/authenticate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"authenticate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "authorize_token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBeW1hbi5SYW1hZGFuNjExQGdtYWlsLmNvbSIsImlhdCI6MTY3NTUyNzQ4NywiZXhwIjoxNjc1NTI5Mjg3fQ.8xVDXo0eu1_rKIZCCBAYyGMe-hriKloQSmjRaYb-ZUM"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:18:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your token is ready"
+						}
+					]
+				},
+				{
+					"name": "Verify User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/verifyRegistration?token={{user_verify_token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"verifyRegistration"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{user_verify_token}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user/verifyRegistration?token={{user_verify_token}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"verifyRegistration"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "{{user_verify_token}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:18:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Account is Verified !"
+						}
+					]
+				},
+				{
+					"name": "Resend Verification Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/resendVerification?oldToken={{user_verify_token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"resendVerification"
+							],
+							"query": [
+								{
+									"key": "oldToken",
+									"value": "{{user_verify_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.headers.get(\"reset_password_token\");\r",
+									"pm.collectionVariables.set(\"reset_password_user_token\" , token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/resetPassword?email=Ayman.Ramadan611@gmail.com",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"resetPassword"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "Ayman.Ramadan611@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Save Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Ayman.Ramadan611@gmail.com\",\r\n    \"password\" : \"AymanRamadan\",\r\n    \"newPassword\" : \"Ayman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/savePassword?token={{reset_password_user_token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"savePassword"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{reset_password_user_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"Ayman.Ramadan611@gmail.com\",\r\n    \"password\" : \"Ayman\",\r\n    \"newPassword\" : \"Hussien\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/changePassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"changePassword"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{reset_password_user_token}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_user_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product \"Admin Only\"",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"MohamedRamadan's Shirt\",\r\n    \"price\": \"250\",\r\n    \"quantity\": \"15\",\r\n    \"category\": \"Sport\",\r\n    \"feedbacks\": \"Good\",\r\n    \"rate\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product/addproduct",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"addproduct"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"MohamedRamadan's Shirt\",\r\n    \"price\": \"250\",\r\n    \"quantity\": \"15\",\r\n    \"category\": \"Sport\",\r\n    \"feedbacks\": \"Good\",\r\n    \"rate\": \"3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/addproduct",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"addproduct"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:18:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 11,\n    \"name\": \"MohamedRamadan's Shirt\",\n    \"price\": 250,\n    \"quantity\": 15,\n    \"category\": \"Sport\",\n    \"feedbacks\": \"Good\",\n    \"rate\": 3\n}"
+						},
+						{
+							"name": "Validation Name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"price\": \"250\",\r\n    \"quantity\": \"15\",\r\n    \"category\": \"Sport\",\r\n    \"feedbacks\": \"Good\",\r\n    \"rate\": \"3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/addproduct",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"addproduct"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:20:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"must not be blank\"\n}"
+						},
+						{
+							"name": "Category Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"MohamedRamadan's Shirt\",\r\n    \"price\": \"250\",\r\n    \"quantity\": \"15\",\r\n\r\n    \"feedbacks\": \"Good\",\r\n    \"rate\": \"3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/addproduct",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"addproduct"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:23:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"category\": \"must not be blank\"\n}"
+						},
+						{
+							"name": "Rate Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"MohamedRamadan's Shirt\",\r\n    \"price\": \"250\",\r\n    \"quantity\": \"15\",\r\n    \"category\": \"Sport\",\r\n    \"feedbacks\": \"Good\",\r\n    \"rate\": \"7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/addproduct",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"addproduct"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:23:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"rate\": \"must be less than or equal to 5\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products \"Admin Only\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products \"Admin Only\"",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/all",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:24:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 1,\n        \"name\": \"Shoes 1\",\n        \"price\": 1706,\n        \"quantity\": 2,\n        \"category\": \"Sport\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 1\n    },\n    {\n        \"productId\": 2,\n        \"name\": \"SweetPants 2\",\n        \"price\": 2486,\n        \"quantity\": 1,\n        \"category\": \" Casual\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 0\n    },\n    {\n        \"productId\": 3,\n        \"name\": \"Jacket 3\",\n        \"price\": 309,\n        \"quantity\": 8,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 0\n    },\n    {\n        \"productId\": 4,\n        \"name\": \"SweetPants 4\",\n        \"price\": 338,\n        \"quantity\": 14,\n        \"category\": \" Casual\",\n        \"feedbacks\": \"Bad\",\n        \"rate\": 4\n    },\n    {\n        \"productId\": 5,\n        \"name\": \"T-shirt 5\",\n        \"price\": 1249,\n        \"quantity\": 5,\n        \"category\": \"Sport\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 2\n    },\n    {\n        \"productId\": 6,\n        \"name\": \"T-shirt 6\",\n        \"price\": 2394,\n        \"quantity\": 18,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 0\n    },\n    {\n        \"productId\": 7,\n        \"name\": \"Jacket 7\",\n        \"price\": 2267,\n        \"quantity\": 1,\n        \"category\": \" Casual\",\n        \"feedbacks\": \"Bad\",\n        \"rate\": 4\n    },\n    {\n        \"productId\": 8,\n        \"name\": \"T-shirt 8\",\n        \"price\": 2154,\n        \"quantity\": 18,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 0\n    },\n    {\n        \"productId\": 9,\n        \"name\": \"T-shirt 9\",\n        \"price\": 1194,\n        \"quantity\": 7,\n        \"category\": \" Casual\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 4\n    },\n    {\n        \"productId\": 10,\n        \"name\": \"T-shirt 10\",\n        \"price\": 2445,\n        \"quantity\": 19,\n        \"category\": \" Casual\",\n        \"feedbacks\": \"Bad\",\n        \"rate\": 1\n    },\n    {\n        \"productId\": 11,\n        \"name\": \"MohamedRamadan's Shirt\",\n        \"price\": 250,\n        \"quantity\": 15,\n        \"category\": \"Sport\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 3\n    },\n    {\n        \"productId\": 12,\n        \"name\": \"MohamedRamadan's Shirt\",\n        \"price\": 0,\n        \"quantity\": 15,\n        \"category\": \"Sport\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 3\n    },\n    {\n        \"productId\": 13,\n        \"name\": \"MohamedRamadan's Shirt\",\n        \"price\": 0,\n        \"quantity\": 15,\n        \"category\": \"Sport\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 3\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Product By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/5",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:26:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 5,\n    \"name\": \"T-shirt 5\",\n    \"price\": 1249,\n    \"quantity\": 5,\n    \"category\": \"Sport\",\n    \"feedbacks\": \"Good\",\n    \"rate\": 2\n}"
+						},
+						{
+							"name": "Product is not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"15"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:24:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error messsage\": \"Product is Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/productname?name=MohamedRamadan's Shirt",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"productname"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "MohamedRamadan's Shirt"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product By Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/productname?name=MohamedRamadan's Shirt",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"productname"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "MohamedRamadan's Shirt"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:32:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 11,\n    \"name\": \"MohamedRamadan's Shirt\",\n    \"price\": 250,\n    \"quantity\": 15,\n    \"category\": \"Sport\",\n    \"feedbacks\": \"Good\",\n    \"rate\": 3\n}"
+						},
+						{
+							"name": "Product Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/productname?name=MohamedRamadan's Shirt",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"productname"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "MohamedRamadan's Shirt"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:31:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error messsage\": \"Your Product is Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Compare Between Two Products by IDs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/compare?firstProduct=4&secondProduct=6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"compare"
+							],
+							"query": [
+								{
+									"key": "firstProduct",
+									"value": "4"
+								},
+								{
+									"key": "secondProduct",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Compare Between Two Products by IDs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/compare?firstProduct=4&secondProduct=6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"compare"
+									],
+									"query": [
+										{
+											"key": "firstProduct",
+											"value": "4"
+										},
+										{
+											"key": "secondProduct",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:32:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 4,\n        \"name\": \"SweetPants 4\",\n        \"price\": 1458,\n        \"quantity\": 9,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 3\n    },\n    {\n        \"productId\": 6,\n        \"name\": \"T-shirt 6\",\n        \"price\": 1106,\n        \"quantity\": 9,\n        \"category\": \" Casual\",\n        \"feedbacks\": \"Bad\",\n        \"rate\": 4\n    }\n]"
+						},
+						{
+							"name": "First Product Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/compare?firstProduct=15&secondProduct=6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"compare"
+									],
+									"query": [
+										{
+											"key": "firstProduct",
+											"value": "15"
+										},
+										{
+											"key": "secondProduct",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:32:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error messsage\": \"Your First Product is Not Found\"\n}"
+						},
+						{
+							"name": "Second Product Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/compare?firstProduct=4&secondProduct=15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"compare"
+									],
+									"query": [
+										{
+											"key": "firstProduct",
+											"value": "4"
+										},
+										{
+											"key": "secondProduct",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:33:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error messsage\": \"Your Second Product is Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Feedbacks \"Admin Only\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/allfeedback",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"allfeedback"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Feedbacks \"Admin Only\"",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/allfeedback",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"allfeedback"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:33:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    \"1,Shoes 1,Good\",\n    \"2,SweetPants 2,Bad\",\n    \"3,Jacket 3,Bad\",\n    \"4,SweetPants 4,Good\",\n    \"5,T-shirt 5,Good\",\n    \"6,T-shirt 6,Bad\",\n    \"7,Jacket 7,Bad\",\n    \"8,Shoes 8,Good\",\n    \"9,Shoes 9,Good\",\n    \"10,T-shirt 10,Good\",\n    \"11,MohamedRamadan's Shirt,Good\"\n]"
+						}
+					]
+				},
+				{
+					"name": "Update Product By ID \"Admin Only\"",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"AymanRamadan Shirt\",\r\n    \"price\" : \"350\",\r\n    \"quantity\" : \"10\",\r\n    \"rate\" : \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product/update/11",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"update",
+								"11"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Hello Shirt",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Product By ID \"Admin Only\"",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"AymanRamadan Shirt\",\r\n    \"price\" : \"350\",\r\n    \"quantity\" : \"10\",\r\n    \"rate\" : \"5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/update/11",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"update",
+										"11"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Hello Shirt",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:34:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Product is updated"
+						}
+					]
+				},
+				{
+					"name": "Update Feedback By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product/updatefeedback?id=5&feedbacks=Professional",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"updatefeedback"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5"
+								},
+								{
+									"key": "feedbacks",
+									"value": "Professional"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Feedback By ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/updatefeedback?id=5&feedbacks=Professional",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"updatefeedback"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5"
+										},
+										{
+											"key": "feedbacks",
+											"value": "Professional"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:34:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Product is updated"
+						},
+						{
+							"name": "Product Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/updatefeedback?id=15&feedbacks=Professional",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"updatefeedback"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "15"
+										},
+										{
+											"key": "feedbacks",
+											"value": "Professional"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:34:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error messsage\": \"Your Product is Not Fount\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product By ID \"Admin Only\"",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product By ID \"Admin Only\"",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:34:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Product is Deleted"
+						},
+						{
+							"name": "Not Found \"After Deleting\"",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"3"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:34:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error messsage\": \"Product is Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/category/:category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"category",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "Classic"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products By Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/category/:category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"category",
+										":category"
+									],
+									"variable": [
+										{
+											"key": "category",
+											"value": "Classic"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:35:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 1,\n        \"name\": \"Shoes 1\",\n        \"price\": 973,\n        \"quantity\": 6,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 4\n    },\n    {\n        \"productId\": 4,\n        \"name\": \"SweetPants 4\",\n        \"price\": 1458,\n        \"quantity\": 9,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Good\",\n        \"rate\": 3\n    },\n    {\n        \"productId\": 7,\n        \"name\": \"Jacket 7\",\n        \"price\": 831,\n        \"quantity\": 11,\n        \"category\": \"Classic\",\n        \"feedbacks\": \"Bad\",\n        \"rate\": 2\n    }\n]"
+						},
+						{
+							"name": "Category Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/product/category/:category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"category",
+										":category"
+									],
+									"variable": [
+										{
+											"key": "category",
+											"value": "Casual"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 16:35:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8082"
+		},
+		{
+			"key": "verify_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "JWT_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "reset_password_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_verify_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "JWT_user_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "reset_password_user_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
