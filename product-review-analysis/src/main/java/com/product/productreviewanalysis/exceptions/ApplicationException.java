@@ -17,13 +17,13 @@ public class ApplicationException{
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String,String > handlerMethodArgumentException(MethodArgumentNotValidException exception)
     {
-        Map<String ,String > errorMsgs = new HashMap<>();
+        Map<String ,String > errorMessages = new HashMap<>();
         exception.getBindingResult().getFieldErrors().forEach(
                 fieldError -> {
-                    errorMsgs.put(fieldError.getField(), fieldError.getDefaultMessage());
+                    errorMessages.put(fieldError.getField(), fieldError.getDefaultMessage());
                 }
         );
-        return errorMsgs;
+        return errorMessages;
     }
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
