@@ -3396,6 +3396,131 @@
 					]
 				},
 				{
+					"name": "Update Name By Name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product/updatefeedback?id=5&feedbacks=Professional",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"updatefeedback"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5"
+								},
+								{
+									"key": "feedbacks",
+									"value": "Professional"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Name By Name",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/product/updatename?name=MohamedRamadan's Shirt&nameUpdated=New Shirt",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"product",
+										"updatename"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "MohamedRamadan's Shirt"
+										},
+										{
+											"key": "nameUpdated",
+											"value": "New Shirt"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 15:36:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Your Product is updated"
+						}
+					]
+				},
+				{
 					"name": "Delete Product By ID \"Admin Only\"",
 					"request": {
 						"method": "DELETE",
