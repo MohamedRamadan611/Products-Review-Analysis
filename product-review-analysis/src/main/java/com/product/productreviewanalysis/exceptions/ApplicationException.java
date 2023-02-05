@@ -26,7 +26,7 @@ public class ApplicationException{
         return errorMsgs;
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(UserNotFoundException.class)
     public Map<String,String> handlerUserNotFoundException(UserNotFoundException exception)
     {
