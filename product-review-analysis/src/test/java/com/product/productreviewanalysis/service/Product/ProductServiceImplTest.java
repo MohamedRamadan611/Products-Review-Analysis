@@ -1,18 +1,38 @@
 package com.product.productreviewanalysis.service.Product;
 
+import com.product.productreviewanalysis.config.Admin.AdminAndUserInfoDetailsService;
+import com.product.productreviewanalysis.config.SecurityConfig;
+import com.product.productreviewanalysis.controller.AdminController;
+import com.product.productreviewanalysis.controller.UserController;
 import com.product.productreviewanalysis.dto.product.ProductDtoToEntity;
 import com.product.productreviewanalysis.entity.Product;
+import com.product.productreviewanalysis.event.listener.RegisterCompleteEventListener;
 import com.product.productreviewanalysis.exceptions.UserNotFoundException;
 import com.product.productreviewanalysis.repository.ProductRepository;
+import com.product.productreviewanalysis.repository.admin.AdminPasswordTokenRepository;
+import com.product.productreviewanalysis.repository.admin.AdminRepository;
+import com.product.productreviewanalysis.repository.admin.AdminVerificationTokenRepository;
+import com.product.productreviewanalysis.repository.user.UserPasswordTokenRepository;
+import com.product.productreviewanalysis.repository.user.UserRepository;
+import com.product.productreviewanalysis.repository.user.UserVerificationTokenRepository;
+import com.product.productreviewanalysis.service.Admin.AdminService;
+import com.product.productreviewanalysis.service.User.UserService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.List;
 
@@ -20,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class ProductServiceImplTest {
+
     @Autowired
     private ProductService productService;
     @MockBean
@@ -44,6 +65,7 @@ class ProductServiceImplTest {
 
         Mockito.when(productRepository.findByName("Jacket")).thenReturn(Optional.ofNullable(product));
 
+       // testEntityManager.persist(product);
     }
 
     @Test
@@ -65,9 +87,8 @@ class ProductServiceImplTest {
     @DisplayName("Get All Products")
     void getAllProducts() {
 
-        List<Product> list = productService.getAllProducts();
-
-        assertEquals(list.get(0).getName(),"Jacket");
+        Map<String,List<Product>> list = productService.getAllProducts();
+        assertEquals(list.get("Sport").get(0).getName(),"Jacket");
     }
 
     @Test
@@ -80,6 +101,7 @@ class ProductServiceImplTest {
     void deleteProductById() throws UserNotFoundException {
         String result = productService.deleteProductById(1);
     }
+
     @Test
     @DisplayName("Update Product name by name")
     void updateNameByName() throws UserNotFoundException {

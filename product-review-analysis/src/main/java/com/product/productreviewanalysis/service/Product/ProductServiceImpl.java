@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,10 +36,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public Map<String,List<Product>> getAllProducts() {
+        Map<String,List<Product>> products = productRepository.findAll().stream()
+                .filter(product -> product.getCategory() != null)
+                .collect(Collectors.groupingBy(Product::getCategory));
+        return products;
     }
-
     @Override
     public Product getProductById(int productId)
     {
@@ -97,7 +101,6 @@ public class ProductServiceImpl implements ProductService {
         return !ObjectUtils.isEmpty(obj);
     }
     @Override
-    @Transactional
     public String updateNameByName(String name, String nameUpdated){
         Product product = productRepository.findByName(name).orElseThrow(() -> new UserNotFoundException("Product is Not Found"));
 
@@ -113,7 +116,6 @@ public class ProductServiceImpl implements ProductService {
         return "Your Product is updated";
     }
     @Override
-    @Transactional
     public String updateProductFeedbackByID(int id, String feedback) {
         Product product = productRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Your Product is Not Fount"));
 
@@ -123,7 +125,6 @@ public class ProductServiceImpl implements ProductService {
         return "Your Product is updated";
     }
     @Override
-    @Transactional
     public String updateProductRateByID(int id, int rate) {
         Product product = productRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Your Product is Not Fount"));
         if(product.getRate() != rate)

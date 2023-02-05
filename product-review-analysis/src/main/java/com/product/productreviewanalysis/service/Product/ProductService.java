@@ -6,11 +6,12 @@ import com.product.productreviewanalysis.entity.Product;
 import com.product.productreviewanalysis.exceptions.UserNotFoundException;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
     Product addProduct(ProductDtoToEntity productDtoToEntity);
 
-    List<Product> getAllProducts();
+    Map<String,List<Product>> getAllProducts();
 
     Product getProductById(int productId) throws UserNotFoundException;
 

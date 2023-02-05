@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/product")
@@ -40,7 +41,7 @@ public class ProductController {
     }
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<List<Product>> getAllProducts()
+    public ResponseEntity<Map<String,List<Product>>> getAllProducts()
     {
         logger.info("Admin in View Products Page");
         return ResponseEntity.ok(productService.getAllProducts());
