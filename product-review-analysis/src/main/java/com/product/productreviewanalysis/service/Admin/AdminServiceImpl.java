@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +26,8 @@ import java.util.stream.Collectors;
 @Service
 public class AdminServiceImpl implements AdminService {
 
+    public static final String VALID = "valid";
+    public static final String YOUR_ACCOUNT_IS_NOT_FOUND = "Your Account is not Found";
     @Autowired
     private AdminRepository adminRepository;
     @Autowired
@@ -35,6 +38,7 @@ public class AdminServiceImpl implements AdminService {
     private AdminVerificationTokenRepository tokenRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Override
     public Admin addAdmin(AdminInfo adminInfo) {
         Admin admin = Admin.builder()
@@ -56,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void saveVerificationAdminToken(Admin admin, String token) {
-        AdminVerificationToken adminVerificationToken = new AdminVerificationToken(admin,token);
+        AdminVerificationToken adminVerificationToken = new AdminVerificationToken(admin, token);
         tokenRepository.save(adminVerificationToken);
     }
 
@@ -66,17 +70,16 @@ public class AdminServiceImpl implements AdminService {
         AdminVerificationToken adminVerificationToken = tokenRepository.findByToken(token);
         Admin admin = adminVerificationToken.getAdmin();
 
-        if(adminVerificationToken == null) {
+        if (adminVerificationToken == null) {
             throw new UserNotFoundException("Your token is not valid");
         }
-        if(new Date(System.currentTimeMillis()).after(adminVerificationToken.getExpirationTime()))
-        {
+        if (new Date(System.currentTimeMillis()).after(adminVerificationToken.getExpirationTime())) {
             tokenRepository.delete(adminVerificationToken);
             throw new UserNotFoundException("Your token is Expired");
         }
         admin.setVerified("Verified");
         adminRepository.save(admin);
-        return "valid";
+        return VALID;
     }
 
     @Override
@@ -89,9 +92,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String createAdminResetPasswordToken(String email) {
-        Admin admin = adminRepository.findByEmail(email).get();
+        Admin admin = adminRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(YOUR_ACCOUNT_IS_NOT_FOUND));
         String token = UUID.randomUUID().toString();
-        AdminPasswordToken adminPasswordToken = new AdminPasswordToken(admin,token);
+        AdminPasswordToken adminPasswordToken = new AdminPasswordToken(admin, token);
         tokenPasswordRepository.save(adminPasswordToken);
         return token;
     }
@@ -100,20 +103,20 @@ public class AdminServiceImpl implements AdminService {
     public String validateAdminPasswordToken(String token) {
         AdminPasswordToken adminPasswordToken = tokenPasswordRepository.findByToken(token);
         Admin admin = adminPasswordToken.getAdmin();
-        if(admin == null)
+        if (admin == null)
             throw new UserNotFoundException("Your token is not valid");
-        if(new Date(System.currentTimeMillis()).after(adminPasswordToken.getExpirationTime()))
+        if (new Date(System.currentTimeMillis()).after(adminPasswordToken.getExpirationTime()))
             throw new UserNotFoundException("Your token is Expired");
         return "Valid";
     }
 
     @Override
     public String saveNewAdminPassword(AdminPasswordInfo adminPasswordInfo) {
-        String result = validateAdminOldPassword(adminPasswordInfo.getPassword() , adminPasswordInfo.getEmail());
-        if(!result.equalsIgnoreCase("valid"))
+        String result = validateAdminOldPassword(adminPasswordInfo.getPassword(), adminPasswordInfo.getEmail());
+        if (!result.equalsIgnoreCase(VALID))
             return "Your Password Is Wrong ! ";
 
-        Admin admin = adminRepository.findByEmail(adminPasswordInfo.getEmail()).get();
+        Admin admin = adminRepository.findByEmail(adminPasswordInfo.getEmail()).orElseThrow(() -> new UserNotFoundException(YOUR_ACCOUNT_IS_NOT_FOUND));
         admin.setPassword(passwordEncoder.encode(adminPasswordInfo.getNewPassword()));
         adminRepository.save(admin);
         return "Your Password is Changed !";
@@ -121,17 +124,17 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String checkAccountVerification(String email) {
-        Admin admin = adminRepository.findByEmail(email).get();
-        if(admin.getVerified().equalsIgnoreCase("Verified"))
+        Admin admin = adminRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(YOUR_ACCOUNT_IS_NOT_FOUND));
+        if (admin.getVerified().equalsIgnoreCase("Verified"))
             return "Valid";
         return "not Valid";
     }
 
     @Override
-    public String validateAdminOldPassword(String password , String email) {
-        Admin admin = adminRepository.findByEmail(email).get();
-        if(passwordEncoder.matches(password , admin.getPassword()))
-            return "valid";
+    public String validateAdminOldPassword(String password, String email) {
+        Admin admin = adminRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(YOUR_ACCOUNT_IS_NOT_FOUND));
+        if (passwordEncoder.matches(password, admin.getPassword()))
+            return VALID;
         return "Not Valid";
     }
 
@@ -145,6 +148,6 @@ public class AdminServiceImpl implements AdminService {
                 .mobile(user.getMobile())
                 .role(user.getRole())
                 .verified(user.getVerified())
-                .build()).collect(Collectors.toList());
+                .build()).toList();
     }
 }

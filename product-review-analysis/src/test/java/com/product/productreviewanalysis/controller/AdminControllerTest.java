@@ -16,8 +16,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -42,8 +42,11 @@ class AdminControllerTest {
     @MockBean
     private JwtAuth jwtAuth;
     @MockBean
-    private SecurityFilterChain securityFilterChain;
+    private AuthenticationProvider authenticationProvider;
+
     @MockBean
+    private SecurityFilterChain securityFilterChain;
+    @Autowired
     private SecurityConfig securityConfig;
     private Admin admin;
     private HttpServletRequest request;
@@ -56,7 +59,7 @@ class AdminControllerTest {
         admin = Admin.builder()
                 .adminId(1)
                 .email("Mohamed.Ramadan611@gmail.com")
-                .name("Mohamed Ramadan")
+                .name("Mohamed")
                 .password("Ramadan")
                 .mobile("01149460094")
                 .verified("VERIFIED")
@@ -70,7 +73,7 @@ class AdminControllerTest {
     void addAdmin() throws Exception{
         AdminInfo adminInfo = new AdminInfo();
                 adminInfo.setEmail("Mohamed.Ramadan611@gmail.com");
-                adminInfo.setName("Mohamed Ramadan");
+                adminInfo.setName("Mohamed");
                 adminInfo.setPassword("Ramadan");
                 adminInfo.setMobile("01149460094");
                 adminInfo.setVerified("VERIFIED");
@@ -84,7 +87,7 @@ class AdminControllerTest {
                // .headers(headers)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "    \"name\" : \"Mohamed Ramadan\",\n" +
+                        "    \"name\" : \"Mohamed\",\n" +
                         "    \"email\" : \"Mohamed.Ramadan611@gmail.com\",\n" +
                         "    \"password\" : \"Ramadan\",\n" +
                         "    \"mobile\" : \"01149460094\"\n" +
